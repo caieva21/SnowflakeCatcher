@@ -5,14 +5,15 @@ void setup()
 }
 void draw()
 {
-  boy = new Snowflake [50];
+  background (255);
+  boy = new Snowflake [10];
   for (int i = 0; i < boy.length; i++)
   {
     boy[i] = new Snowflake();
     boy[i].show();
-    boy[i].move();
-    boy[i].erase();
     boy[i].lookDown();
+    boy[i].erase();
+    boy[i].move();
     boy[i].wrap();
   }
 }
@@ -23,12 +24,13 @@ void mouseDragged()
 
 class Snowflake
 {
-  int x, y;
+  int x, y, bgColor;
   boolean isMoving;
   Snowflake()
   {
     x = (int) (Math.random()*500);
-    y = (int) (Math.random()*500);
+    y = 2;
+    bgColor = color (255, 255, 255);
     isMoving = true;
   }
   void show()
@@ -38,7 +40,7 @@ class Snowflake
   }
   void lookDown()
   {
-    if ( y >= 0 && y <= 500 && y+1 != color (0))
+    if ((get(x, y+5) != bgColor))
       isMoving = false;
     else
       isMoving = true;
